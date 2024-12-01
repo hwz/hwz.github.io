@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>who is helen wei zeng</title>
+    <title>helen wei zeng</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
     <style>
         :root {
@@ -123,15 +123,35 @@
 
         h1 {
             font-size: clamp(2.5rem, 7vw, 4.5rem);
-            line-height: 1.1;
+            line-height: 1.2;
             font-weight: 300;
             letter-spacing: -0.02em;
             color: var(--primary);
-            text-shadow: 0 0 10px rgba(172, 15, 25, 0.5);
-            /* background: linear-gradient(45deg, var(--primary), var(--secondary)); */
-            /* background-clip: text;
+            text-shadow: 
+                0 0 7px rgba(165, 37, 0, 0.8),
+                0 0 10px rgba(165, 37, 0, 0.3),
+                0 0 21px rgba(165, 37, 0, 0.3),
+                0 0 42px rgba(196, 141, 104, 0.3);
+            background: linear-gradient(45deg, #ff3300, var(--primary), var(--accent));
+            background-clip: text;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; */
+            -webkit-text-fill-color: transparent;
+            animation: neonFlicker 2s infinite alternate;
+        }
+
+        @keyframes neonFlicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+                opacity: 0.99;
+                text-shadow: 
+                    0 0 7px rgba(165, 37, 0, 0.8),
+                    0 0 10px rgba(165, 37, 0, 0.3),
+                    0 0 21px rgba(165, 37, 0, 0.3),
+                    0 0 42px rgba(196, 141, 104, 0.3);
+            }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+                opacity: 0.4;
+                text-shadow: none;
+            }
         }
 
         .title {
