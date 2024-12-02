@@ -38,7 +38,7 @@
         .noise {
             position: fixed;
             inset: 0;
-            background-image: url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="1"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.05"/></svg>');
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
             pointer-events: none;
             opacity: 0.4;
             z-index: 1000;
@@ -117,7 +117,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: left;
+            object-position: center;
             animation: slowPan 30s ease-in-out alternate infinite;
             filter: saturate(1.2) contrast(1.1);
             opacity: 0.7;
@@ -139,20 +139,54 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: neonFlicker 4s infinite;
+            opacity: 0;
+            animation: 
+                powerOn 1.5s ease-out forwards,
+                neonFlicker 4s infinite 2s;  /* Starts after powerOn finishes (1.3s + 2s = 3.3s) */
+        }
+
+        @keyframes powerOn {
+            0% {
+                opacity: 0;
+                text-shadow: none;
+            }
+            40% {
+                opacity: 0;
+                text-shadow: none;
+            }
+            /* First flicker */
+            42% { opacity: 0.8; }
+            43% { opacity: 0.1; }
+            
+            /* Second flicker */
+            60% { opacity: 0.9; }
+            61% { opacity: 0.2; }
+            
+            /* Third flicker */
+            75% { opacity: 0.8; }
+            76% { opacity: 0.3; }
+            
+            /* Final power on sequence */
+            85% { opacity: 0.9; }
+            86% { opacity: 0.7; }
+            87% { opacity: 0.8; }
+            100% { opacity: 1; }
         }
 
         @keyframes neonFlicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+            0%, 100% {
                 text-shadow: 
                     0 0 7px rgba(165, 37, 0, 0.8),
                     0 0 10px rgba(165, 37, 0, 0.3),
                     0 0 21px rgba(165, 37, 0, 0.3),
                     0 0 42px rgba(196, 141, 104, 0.3);
             }
-            20%, 22%, 24%, 55% {
-                text-shadow: none;
-                opacity: 0.8;
+            50% {
+                text-shadow: 
+                    0 0 5px rgba(165, 37, 0, 0.7),
+                    0 0 8px rgba(165, 37, 0, 0.2),
+                    0 0 16px rgba(165, 37, 0, 0.2),
+                    0 0 32px rgba(196, 141, 104, 0.2);
             }
         }
 
@@ -244,15 +278,16 @@
             }
         }
 
-        .hero-content > * {
+        .hero-content > *:not(:first-child) {
             opacity: 0;
             animation: fadeIn 1s forwards;
         }
 
-        .hero-content > *:nth-child(1) { animation-delay: 0.3s; }
-        .hero-content > *:nth-child(2) { animation-delay: 0.5s; }
-        .hero-content > *:nth-child(3) { animation-delay: 0.7s; }
-        .hero-content > *:nth-child(4) { animation-delay: 0.9s; }
+        .hero-content > .title { animation-delay: 1.4s; }
+        .hero-content > p:nth-of-type(1) { animation-delay: 1.6s; }
+        .hero-content > p:nth-of-type(2) { animation-delay: 1.8s; }
+        .hero-content > p:nth-of-type(3) { animation-delay: 2s; }
+        .hero-content > .social-links { animation-delay: 2.2s; }
 
         @media (max-width: 768px) {
             .hero {
@@ -315,7 +350,7 @@
     <div class="noise"></div>
     <nav class="nav">
         <div class="nav-brand"></div>
-        <a href="mailto:helen.w.zeng@hwz.io" class="nav-link">email me</a>
+        <a href="mailto:helen@hwz.io" class="nav-link">helen@hwz.io</a>
     </nav>
 
     <main class="hero">
@@ -326,11 +361,11 @@
             <p>Currently, I work on an AI-powered video editor called <a href="https://www.descript.com">Descript</a>, focused on simplifying the editing process for everyone.</p>
             <p>My <a href="https://www.instagram.com/weiward.jewelry">jewelry</a> is focused on metal and form over precious stones. I'm currently working on a collection based on Chinese mythology.</p>
             <div class="social-links">
+                <a href="mailto:helen@hwz.io" class="social-link">email</a>
                 <a href="www.linkedin.com/in/helenzeng" class="social-link">linkedin</a>
                 <a href="https://x.com/hwz" class="social-link">twitter</a>
                 <a href="https://bsky.app/profile/weiward.bsky.social" class="social-link">bluesky</a>
                 <a href="https://letterboxd.com/hwz/" class="social-link">letterboxd</a>
-
             </div>
         </div>
         <div class="photo-container">
