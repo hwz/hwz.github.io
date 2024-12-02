@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>helen wei zeng</title>
+    <title>helen zeng</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.19.3/inter.min.css">
     <style>
         :root {
@@ -99,15 +99,17 @@
             flex-direction: column;
             justify-content: center;
             gap: 1.6rem;
-            padding: calc(var(--spacing) * 2) var(--spacing);
+            padding: calc(var(--spacing)) var(--spacing);
             background: rgba(10,10,10,0.3);
             backdrop-filter: blur(10px);
             z-index: 2;
+            min-height: 50vh;
         }
 
         .photo-container {
             position: relative;
-            height: 100vh;
+            height: 100%;
+            width: 100%;
             overflow: hidden;
         }
 
@@ -115,6 +117,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             animation: slowPan 15s ease-in-out alternate infinite;
             filter: saturate(1.2) contrast(1.1);
             opacity: 0.7;
@@ -136,21 +139,20 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: neonFlicker 2s infinite alternate;
+            animation: neonFlicker 4s infinite;
         }
 
         @keyframes neonFlicker {
-            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
-                opacity: 0.99;
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
                 text-shadow: 
                     0 0 7px rgba(165, 37, 0, 0.8),
                     0 0 10px rgba(165, 37, 0, 0.3),
                     0 0 21px rgba(165, 37, 0, 0.3),
                     0 0 42px rgba(196, 141, 104, 0.3);
             }
-            20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
-                opacity: 0.4;
+            20%, 22%, 24%, 55% {
                 text-shadow: none;
+                opacity: 0.8;
             }
         }
 
@@ -183,8 +185,9 @@
         }
         .social-links {
             display: flex;
-            gap: 2rem;
-            margin-top: 5rem;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .social-link {
@@ -250,6 +253,62 @@
         .hero-content > *:nth-child(2) { animation-delay: 0.5s; }
         .hero-content > *:nth-child(3) { animation-delay: 0.7s; }
         .hero-content > *:nth-child(4) { animation-delay: 0.9s; }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;  /* Single column */
+                min-height: 100vh;
+                position: relative;
+            }
+
+            .photo-container {
+                position: absolute;
+                height: 100vh;  /* Full viewport height */
+                width: 100%;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 2;
+                background: rgba(10,10,10,0.7);  /* Darker background for better readability */
+                backdrop-filter: blur(8px);
+                min-height: 100vh;  /* Full height */
+                justify-content: center;
+            }
+
+            /* Adjust text for better contrast against photo */
+            h1 {
+                font-size: clamp(2rem, 5vw, 3rem);
+                text-shadow: 
+                    0 0 7px rgba(165, 37, 0, 0.9),
+                    0 0 10px rgba(165, 37, 0, 0.4),
+                    0 0 21px rgba(165, 37, 0, 0.4),
+                    0 0 42px rgba(196, 141, 104, 0.4),
+                    2px 2px 4px rgba(0, 0, 0, 0.5);  /* Added shadow for readability */
+            }
+
+            p {
+                font-size: 1rem;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);  /* Added shadow for readability */
+            }
+
+            .title {
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .social-links {
+                gap: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -264,13 +323,14 @@
             <h1>helen wei zeng</h1>
             <div class="title">san francisco, ca</div>
             <p>Hi, I'm Helen. I'm a product manager by profession and a metalsmith by trade.</p>
-            <p>Currently, I work on a AI video editing startup called <a href="https://www.descript.com">Descript</a>, focused on simplifying the editing process for everyone.</p>
+            <p>Currently, I work on an AI-powered video editor called <a href="https://www.descript.com">Descript</a>, focused on simplifying the editing process for everyone.</p>
             <p>My <a href="https://www.instagram.com/weiward.jewelry">jewelry</a> is focused on metal and form over precious stones. I'm currently working on a collection based on Chinese mythology.</p>
             <div class="social-links">
                 <a href="www.linkedin.com/in/helenzeng" class="social-link">linkedin</a>
                 <a href="https://x.com/hwz" class="social-link">twitter</a>
-
                 <a href="https://bsky.app/profile/weiward.bsky.social" class="social-link">bluesky</a>
+                <a href="https://letterboxd.com/hwz/" class="social-link">letterboxd</a>
+
             </div>
         </div>
         <div class="photo-container">
